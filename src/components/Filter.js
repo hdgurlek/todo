@@ -13,8 +13,8 @@ export default function Filter() {
 function FilterButton({ label, id }) {
     const { onFilterChange } = useTodo();
 
-    const { filterMode } = useTodo();
-    let classSuffix = id === filterMode ? "highlighted" : "";
+    const { currentFilterMode } = useTodo();
+    let classSuffix = id === currentFilterMode ? "highlighted" : "";
 
     let className = `filter-button ${classSuffix}`
 

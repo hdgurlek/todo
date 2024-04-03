@@ -48,7 +48,6 @@ header {
     border-bottom: solid 1px rgb(169, 169, 169);
 }
 
-
 .list-item.hidden {
     display: none;
 }
@@ -71,6 +70,7 @@ header {
     border: solid 1.5px #234261;
     width: 15px;
     height: 15px;
+    cursor: pointer;
 }
 
 .list-item-status-loader {
@@ -80,8 +80,9 @@ header {
     width: 10px;
     height: 10px;
     animation: spin 1s linear infinite;
-    display: block;
-    margin: 0 10px;
+    display: flex;
+    margin: 0 0px;
+    justify-content: flex-end;
 }
 
 .list-item-status-loader.hidden {
@@ -100,6 +101,9 @@ header {
 
 .list-item-icons {
     display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 20%;
 }
 
 .list-item-icons.hidden {
@@ -109,30 +113,24 @@ header {
 .list-item-failed-icon-container {
     display: flex;
     width: 190px;
+    justify-content: flex-end;
 }
 
 .list-item-failed-icon {
     display: flex;
-    margin: 0 12px;
+    margin: 0 10px;
     color: #f7be00;
     height: 20px;
-    justify-content: flex-right;
-    align-items: right;
+    justify-content: flex-end;
+    align-items: center;
+    width: 20%;
 }
 
 .list-item-failed-icon.hidden {
     display: none;
 }
 
-/* .list-item-failed-icon-text {
-    width: 120px;
-    display: flex;
-    color: #000000;
-    border-radius: 5px;
-    align-items: center;
-} */
-
-#failed-icon-tooltip{
+#failed-icon-tooltip {
     display: flex;
     border-radius: 5px;
     background-color: transparent;
@@ -141,19 +139,22 @@ header {
     padding: 0px;
 }
 
-.task-action-button {
+.task-delete-button {
     display: flex;
     justify-content: flex-right;
     align-items: right;
-    width: 40px;
     cursor: pointer;
-    width: 40px;
+    height: 15px;
     color: #234261;
+    padding: 0 10px;
 }
 
 .task-comment-icon.visible {
+    display: flex;
     color: #234261;
-    display: inline;
+    height: 15px;
+    cursor: pointer;
+    align-items: center;
 }
 
 .task-comment-icon.hidden {

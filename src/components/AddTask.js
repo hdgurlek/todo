@@ -26,7 +26,7 @@ export default function AddTask() {
             const newTask = {
                 name: task,
                 id: -1,
-                isCompleted: false,
+                completed: false,
                 comment: ''
             };
 
@@ -36,7 +36,6 @@ export default function AddTask() {
             addTask(task, key);
             addTaskRequest(newTask, addTaskCallback, key);
             setTask("");
-            
         }
     }
 
@@ -47,7 +46,6 @@ export default function AddTask() {
     }
 
     function addTaskCallback(id, isCreated, key) {
-        console.log("UPDATE ID CALLBACK");
         const status = isCreated ? "CREATED" : "FAILED";
         updateTaskId(id, status, key);
     }

@@ -11,33 +11,33 @@ export default function TaskList() {
     return (
         <div className="task-list">
             {currentFilterMode === "all"
-                ? tasks.map((item) => <ListItem key={item.key} item={item}></ListItem>)
+                ? tasks.map((item) => <ListItem key={item.id} item={item}></ListItem>)
                 : currentFilterMode === "completed"
                     ? tasks
-                        .filter((item) => item.isCompleted)
-                        .map((item) => <ListItem key={item.key} item={item}></ListItem>)
+                        .filter((item) => item.completed)
+                        .map((item) => <ListItem key={item.id} item={item}></ListItem>)
                     : tasks
-                        .filter((item) => !item.isCompleted)
-                        .map((item) => <ListItem key={item.key} item={item}></ListItem>)}
+                        .filter((item) => !item.completed)
+                        .map((item) => <ListItem key={item.id} item={item}></ListItem>)}
         </div>
     );
 }
 
-function ListItem({ item }) {
+function ListItem({ item }) {                   
     const { currentFilterMode, filterModes, updateTaskStatus, deleteTask } = useTodo();
 
-    const isCompleted = item.isCompleted;
+    const completed = item.completed;
     const isFailed = item.backendStatus === "FAILED";
-    const isInProgress = item.backendStatus === "IN_PROGRESS";
+    const isInProgress = item.backendStatus === "IN_PROGRESS";				     	
 
     const classSuffix =
-        isCompleted ? (currentFilterMode === filterModes[2] ? "hidden" : "completed") :
+        completed ? (currentFilterMode === filterModes[2] ? "hidden" : "completed") :
             currentFilterMode === filterModes[1] ? "hidden" : "";
 
     const commentIconVisibility = item.comment && item.comment.trim() !== '' ? 'visible' : 'hidden';
 
     const handleTaskCompleted = (checked) => {
-        updateTask(item);
+        updateTask({...item, completed: checked});
         updateTaskStatus(item.id, checked);
     };
 
@@ -47,21 +47,24 @@ function ListItem({ item }) {
     };
 
     return (
+
         <div className={`list-item ${classSuffix}`}>
             <input
                 id={item.id}
                 type="checkbox"
                 className="list-item-checkbox"
-                checked={item.isCompleted}
+                checked={item.completed}
                 onChange={(e) => handleTaskCompleted(e.target.checked)}
             />
             <Link to={`task/${item.id}`} className={`list-item-label ${classSuffix}`}>
                 {item.name}
             </Link>
             <div className={`list-item-icons ${isFailed || isInProgress ? 'hidden' : ''}`}>
-                <FaComment className={`task-comment-icon ${commentIconVisibility}`} />
+                <Link to={`task/${item.id}`}>
+                    <FaComment className={`task-comment-icon ${commentIconVisibility}`} />
+                </Link>
                 <FaTrash
-                    className="task-action-button"
+                    className="task-delete-button"
                     id={item.id}
                     onClick={handleTaskDeleted}
                 >

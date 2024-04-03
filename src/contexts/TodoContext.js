@@ -27,7 +27,10 @@ const tasksReducer = (state, action) => {
                 {
                     id: action.task.id,
                     name: action.task.name,
-                    isCompleted: action.task.isCompleted,
+                    completed: action.task.completed,
+                    comment: action.task.comment,
+                    backendStatus: action.task.backendStatus,
+                    key: action.task.key
                 },
             ],
         };
@@ -40,7 +43,7 @@ const tasksReducer = (state, action) => {
                 if (t.id === action.task.id) {
                     return {
                         ...t,
-                        isCompleted: action.task.isCompleted,
+                        completed: action.task.completed,
                     };
                 } else {
                     return t;
@@ -88,7 +91,6 @@ const tasksReducer = (state, action) => {
     }
 
     if (action.type === "SET_TASKS") {
-        console.log("HELLO MY DARLING iMMA NOW LOAD THE DATA");
         return {
             ...state,
             tasks: [...action.tasks]
@@ -103,7 +105,7 @@ function TodoProvider({ children }) {
         const task = {
             id: -1,
             name,
-            isCompleted: false,
+            completed: false,
             comment: "",
             backendStatus: 'IN_PROGRESS',
             key: key,
@@ -115,12 +117,12 @@ function TodoProvider({ children }) {
         });
     };
 
-    const updateTaskStatus = (id, isCompleted) => {
+    const updateTaskStatus = (id, completed) => {
         dispatch({
             type: "UPDATE_TASK",
             task: {
                 id,
-                isCompleted: isCompleted,
+                completed: completed,
             },
         });
     };
@@ -153,11 +155,11 @@ function TodoProvider({ children }) {
 
     const updateTaskId = (id, backendStatus, key) => {
         dispatch({
-            type: "UPDATE_TASK",
+            type: "UPDATE_ID",
             task: {
                 id,
-                backendStatus,
-                key,
+                backendStatus: backendStatus,
+                key: key,
             }
         });
     };

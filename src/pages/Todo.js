@@ -3,15 +3,17 @@ import TaskList from '../components/TaskList';
 import AddTask from '../components/AddTask';
 import Filter from '../components/Filter';
 import useTodo from '../hooks/useTodo';
+import { useEffect } from 'react';
 
 export default function TodoPage() {
-    const { tasks, setTasks } = useTodo(); 
-    let data = useLoaderData();
+    
+    const { setTasks } = useTodo(); 
+    const data = useLoaderData();
 
-    if(tasks.length === 0){
+    useEffect(() => {
         setTasks(data);
-    }
-        
+    }, [data])
+
     return (
         <div>
             <div className="main-container">

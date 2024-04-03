@@ -14,8 +14,8 @@ export default function Edit() {
     const [comment, setComment] = useState(task.comment);
 
     const handleTaskEdited = () => {
-        editTaskComment(task.id, task.comment);
-        updateTask(task);
+        editTaskComment(task.id, comment);
+        updateTask({...task, comment: comment});
     };
 
     return (
