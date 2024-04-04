@@ -5,10 +5,10 @@ function App() {
 
   return (
     <div className='app'>
-      <header className='header'>
+      <h1 className='app-header'>
         Todo List
-      </header>
-      <div className="main-container">
+      </h1>
+      <div className="app-main-container">
         <Todo />
       </div>
     </div>

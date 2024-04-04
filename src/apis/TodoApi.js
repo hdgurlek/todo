@@ -6,12 +6,20 @@ export async function getTasks() {
 
 export async function addTaskRequest(task, addTaskCallback, key) {
 
+      const taskForApi = {
+        name: task,
+        id: -1,
+        completed: false,
+        comment: ''
+    };
+ 
+    //Fake Network Behaviour
     await new Promise(resolve => setTimeout(resolve, 1000));
     const random = Math.random();
 
     try {
-        if (random < 0.6) {
-            throw new Error("Network response was not OK");
+        if (random < 0.3) {
+            throw new Error("Network Error");
         }
     } catch {
         addTaskCallback(-1, false, key);
@@ -23,7 +31,7 @@ export async function addTaskRequest(task, addTaskCallback, key) {
             method: "POST", headers: {
                 "Content-Type": "application/json",
                 // 'Content-Type': 'application/x-www-form-urlencoded',
-            }, body: JSON.stringify(task)
+            }, body: JSON.stringify(taskForApi)
         });
 
         if (!response.ok) {

@@ -91,6 +91,7 @@ const tasksReducer = (state, action) => {
     }
 
     if (action.type === "SET_TASKS") {
+
         return {
             ...state,
             tasks: [...action.tasks]

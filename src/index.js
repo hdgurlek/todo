@@ -11,7 +11,7 @@ import Edit from './components/Edit';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <TodoPage />,
+    element: <App />,
     loader: loader,
     children: [
       {
@@ -26,7 +26,6 @@ root.render(
   <React.StrictMode>
     <TodoProvider>
       <RouterProvider router={router} >
-        <App />
       </RouterProvider>
     </TodoProvider>
   </React.StrictMode >

@@ -6,17 +6,16 @@ import useTodo from '../hooks/useTodo';
 import { useEffect } from 'react';
 
 export default function TodoPage() {
-    
-    const { setTasks } = useTodo(); 
-    const data = useLoaderData();
 
+    const { setTasks } = useTodo();
+    const data = useLoaderData();
     useEffect(() => {
         setTasks(data);
     }, [data])
 
     return (
         <div>
-            <div className="main-container">
+            <div className="todo-main-container">
                 <AddTask></AddTask>
                 <TaskList></TaskList>
                 <Filter></Filter>

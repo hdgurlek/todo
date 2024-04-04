@@ -6,16 +6,16 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-header {
+.app-header {
     display: flex;
     font-size: 36px;
     color: #fff;
     font-weight: 600;
-    padding: 40px;
+    padding-top: 30px;
     justify-content: center;
 }
 
-.main-container {
+.app-main-container {
     display: flex;
     flex-direction: column;
     margin-top: 10px;
@@ -23,6 +23,25 @@ header {
     border-radius: 5px;
     padding: 10px 15px;
     width: 480px;
+}
+
+.sync-tasks-button{
+    visibility: visible;
+    display: flex;
+    position: absolute;
+    width: 120px;
+    height: 40px;
+    top: 18%;
+    left: 50%;
+    font-size: 14px;
+    transform: translateX(-50%);
+    background-color: #ff9500; 
+    color: #fff;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;    
+    cursor: pointer;
+    border: none;
 }
 
 .task-list {
@@ -73,6 +92,13 @@ header {
     cursor: pointer;
 }
 
+.list-item-loader-container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
 .list-item-status-loader {
     border: 4px solid #e6e6e6;
     border-top: 4px solid #2c85c1;
@@ -81,7 +107,6 @@ header {
     height: 10px;
     animation: spin 1s linear infinite;
     display: flex;
-    margin: 0 0px;
     justify-content: flex-end;
 }
 
@@ -119,7 +144,7 @@ header {
 .list-item-failed-icon {
     display: flex;
     margin: 0 10px;
-    color: #f7be00;
+    color: #ff9500;
     height: 20px;
     justify-content: flex-end;
     align-items: center;
@@ -199,7 +224,6 @@ header {
 .add-task-button:hover,
 .filter-button:hover {
     background-color: #90a2b7;
-
 }
 
 .filter-button.highlighted {

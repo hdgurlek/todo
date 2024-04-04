@@ -1,4 +1,4 @@
-import { FaComment, FaTrash, FaExclamationCircle } from "react-icons/fa";
+import { FaComment, FaTrash, FaExclamationCircle, FaSync } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Tooltip } from 'react-tooltip';
 import useTodo from "../hooks/useTodo";
@@ -23,12 +23,12 @@ export default function TaskList() {
     );
 }
 
-function ListItem({ item }) {                   
+function ListItem({ item }) {
     const { currentFilterMode, filterModes, updateTaskStatus, deleteTask } = useTodo();
 
     const completed = item.completed;
     const isFailed = item.backendStatus === "FAILED";
-    const isInProgress = item.backendStatus === "IN_PROGRESS";				     	
+    const isInProgress = item.backendStatus === "IN_PROGRESS";
 
     const classSuffix =
         completed ? (currentFilterMode === filterModes[2] ? "hidden" : "completed") :
@@ -37,7 +37,7 @@ function ListItem({ item }) {
     const commentIconVisibility = item.comment && item.comment.trim() !== '' ? 'visible' : 'hidden';
 
     const handleTaskCompleted = (checked) => {
-        updateTask({...item, completed: checked});
+        updateTask({ ...item, completed: checked });
         updateTaskStatus(item.id, checked);
     };
 
