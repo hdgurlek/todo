@@ -11,14 +11,14 @@ export default function TaskList() {
     return (
         <div className="task-list">
             {currentFilterMode === "all"
-                ? tasks.map((item) => <ListItem key={item.id} item={item}></ListItem>)
+                ? tasks.map((item) => <ListItem item={item}></ListItem>)
                 : currentFilterMode === "completed"
                     ? tasks
                         .filter((item) => item.completed)
-                        .map((item) => <ListItem key={item.id} item={item}></ListItem>)
+                        .map((item) => <ListItem item={item}></ListItem>)
                     : tasks
                         .filter((item) => !item.completed)
-                        .map((item) => <ListItem key={item.id} item={item}></ListItem>)}
+                        .map((item) => <ListItem item={item}></ListItem>)}
         </div>
     );
 }
@@ -46,9 +46,12 @@ function ListItem({ item }) {
         deleteTask(item.id);
     };
 
+    const opacity = item.id === -1 ? 0.5 : 1;
+    const pointerEvents = item.id === -1 ? 'none' : '';
+
     return (
 
-        <div className={`list-item ${classSuffix}`}>
+        <div className={`list-item ${classSuffix}`} style={{ opacity: opacity, pointerEvents: pointerEvents}}>
             <input
                 id={item.id}
                 type="checkbox"
@@ -71,7 +74,10 @@ function ListItem({ item }) {
                     Delete
                 </FaTrash>
             </div>
-            <div className={`list-item-status-loader ${isFailed || !isInProgress ? 'hidden' : ''}`} />
+            <div className="loader-container">
+                <div className={`list-item-status-loader ${!isInProgress ? 'hidden' : ''}`} />
+
+            </div>
             <div className={`list-item-failed-icon ${isFailed ? '' : 'hidden'}`}>
                 <a data-tooltip-id='failed-icon-tooltip' data-tooltip-content="Adding task failed">
                     <FaExclamationCircle className={`failed-icon`} />

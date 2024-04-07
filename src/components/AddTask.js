@@ -6,7 +6,6 @@ import useTodo from "../hooks/useTodo";
 export default function AddTask() {
     const [task, setTask] = useState('');
     const { tasks, addTask, updateTaskId } = useTodo();
-    const [failedTasksAvailable, setSync ] = useState(false);
 
     return (
         <div>
@@ -14,7 +13,7 @@ export default function AddTask() {
                 <AddTaskInput onChange={handleOnChange} task={task} onAddTask={handleAddTask} onKeyUp={handleEnterKey}></AddTaskInput>
                 <AddTaskButton onAddTask={handleAddTask}></AddTaskButton>
             </div>
-            <div>{failedTasksAvailable &&
+            <div>{failedTasksAvailable() &&
                 <button className="sync-tasks-button" onClick={() => onSyncTasks()}>
                     <FaSync></FaSync>
                     &nbsp;&nbsp;Sync Tasks
@@ -23,6 +22,10 @@ export default function AddTask() {
             </div>
         </div>
     );
+
+    function failedTasksAvailable() {
+        return tasks.some(task => task.backendStatus === "FAILED");
+    }
 
     function handleOnChange(e) {
         if ((e.target.value).trim() !== '') {
@@ -51,13 +54,15 @@ export default function AddTask() {
     function addTaskCallback(id, isCreated, key) {
         const status = isCreated ? "CREATED" : "FAILED";
         updateTaskId(id, status, key);
-        setSync(!isCreated);
     }
 
     function onSyncTasks() {
         let failedTasks = tasks.filter(task => task.backendStatus === "FAILED");
         console.log(failedTasks);
-        failedTasks.map(task => addTaskRequest(task.name, addTaskCallback, task.key));
+        failedTasks.map(task => {
+            addTaskRequest(task.name, addTaskCallback, task.key);
+            updateTaskId(task.id, "IN_PROGRESS", task.key)
+        });
     }
 }
 
