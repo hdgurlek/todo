@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { MdClose } from "react-icons/md";
 import React, { useState } from 'react';
 import useTodo from "../hooks/useTodo";
-import { updateTask } from "../apis/TodoApi";
+import { updateTask, updateTaskRequest } from "../apis/TodoApi";
 
 export default function Edit() {
 
@@ -15,7 +15,7 @@ export default function Edit() {
 
     const handleTaskEdited = () => {
         editTaskComment(task.id, comment);
-        updateTask({...task, comment: comment});
+        updateTaskRequest({...task, comment: comment});
     };
 
     return (

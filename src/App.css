@@ -95,9 +95,14 @@ body {
 
 .loader-container{
     display: flex;
-    width: 100%;
-    position: absolute;
-    left: 630px;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 40%;
+    padding: 0 10px;
+}
+
+.loader-container.hidden {
+    display: none;
 }
 
 .list-item-status-loader {
@@ -108,12 +113,10 @@ body {
     height: 10px;
     animation: spin 1s linear infinite;
     display: flex;
-    justify-content: flex-end;
+    align-items: flex-end;
 }
 
-.list-item-status-loader.hidden {
-    display: none;
-}
+
 
 @keyframes spin {
     0% {
@@ -228,7 +231,7 @@ body {
 }
 
 .filter-button.highlighted {
-    background-color: rgb(134, 181, 223);
+    background-color: rgb(39, 92, 138);
 }
 
 .filter-container {

@@ -3,6 +3,8 @@ import { addTaskRequest } from "../apis/TodoApi";
 import { FaSync } from "react-icons/fa";
 import useTodo from "../hooks/useTodo";
 
+const { v4: uuidv4 } = require('uuid');
+
 export default function AddTask() {
     const [task, setTask] = useState('');
     const { tasks, addTask, updateTaskId } = useTodo();
@@ -35,8 +37,6 @@ export default function AddTask() {
 
     async function handleAddTask() {
         if (task !== '') {
-
-            const { v4: uuidv4 } = require('uuid');
             const key = uuidv4();
 
             addTask(task, key);

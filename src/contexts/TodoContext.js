@@ -82,7 +82,7 @@ const tasksReducer = (state, action) => {
         return {
             ...state, tasks: state.tasks.map(t => {
                 if (t.key === action.task.key) {
-                    return { ...t, id: action.task.id, backendStatus: action.task.backendStatus, key: action.task.key };
+                    return { ...t, id: action.task.id, backendStatus: action.task.backendStatus };
                 } else {
                     return t;
                 }

@@ -52,7 +52,7 @@ export async function deleteTaskRequest(id) {
     const taskDeleted = await response.json();
 }
 
-export async function updateTask(task) {
+export async function updateTaskRequest(task) {
     const data = {
         id: task.id,
         name: task.name,

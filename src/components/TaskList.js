@@ -2,7 +2,7 @@ import { FaComment, FaTrash, FaExclamationCircle, FaSync } from "react-icons/fa"
 import { Link } from "react-router-dom";
 import { Tooltip } from 'react-tooltip';
 import useTodo from "../hooks/useTodo";
-import { updateTask, deleteTaskRequest } from "../apis/TodoApi";
+import { updateTask, deleteTaskRequest, updateTaskRequest } from "../apis/TodoApi";
 
 export default function TaskList() {
 
@@ -37,7 +37,7 @@ function ListItem({ item }) {
     const commentIconVisibility = item.comment && item.comment.trim() !== '' ? 'visible' : 'hidden';
 
     const handleTaskCompleted = (checked) => {
-        updateTask({ ...item, completed: checked });
+        updateTaskRequest({ ...item, completed: checked });
         updateTaskStatus(item.id, checked);
     };
 
@@ -51,15 +51,18 @@ function ListItem({ item }) {
 
     return (
 
-        <div className={`list-item ${classSuffix}`} style={{ opacity: opacity, pointerEvents: pointerEvents}}>
+        <div className={`list-item ${classSuffix}`}>
             <input
                 id={item.id}
                 type="checkbox"
                 className="list-item-checkbox"
                 checked={item.completed}
                 onChange={(e) => handleTaskCompleted(e.target.checked)}
+                style={{ opacity: opacity, pointerEvents: pointerEvents }}
             />
-            <Link to={`task/${item.id}`} className={`list-item-label ${classSuffix}`}>
+            <Link to={`task/${item.id}`} className={`list-item-label ${classSuffix}`}
+                style={{ opacity: opacity, pointerEvents: pointerEvents }}
+            >
                 {item.name}
             </Link>
             <div className={`list-item-icons ${isFailed || isInProgress ? 'hidden' : ''}`}>
@@ -74,11 +77,11 @@ function ListItem({ item }) {
                     Delete
                 </FaTrash>
             </div>
-            <div className="loader-container">
-                <div className={`list-item-status-loader ${!isInProgress ? 'hidden' : ''}`} />
+            <div className={`loader-container ${!isInProgress ? 'hidden' : ''}`}>
+                <div className="list-item-status-loader"/>
 
             </div>
-            <div className={`list-item-failed-icon ${isFailed ? '' : 'hidden'}`}>
+            <div className={`list-item-failed-icon ${isFailed ? '' : 'hidden'}`} style={{ opacity: '1' }}>
                 <a data-tooltip-id='failed-icon-tooltip' data-tooltip-content="Adding task failed">
                     <FaExclamationCircle className={`failed-icon`} />
                 </a>
