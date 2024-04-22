@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { MdClose } from "react-icons/md";
 import React, { useState } from 'react';
 import useTodo from "../hooks/useTodo";
-import { updateTask, updateTaskRequest } from "../apis/TodoApi";
+import { updateTaskRequest } from "../apis/TodoApi";
 
 export default function Edit() {
 

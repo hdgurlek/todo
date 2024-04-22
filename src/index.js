@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import { TodoProvider } from "./contexts/TodoContext.js";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import TodoPage from './pages/Todo.js';
 import { getTasks as loader } from './apis/TodoApi.js';
 import Edit from './components/Edit';
 

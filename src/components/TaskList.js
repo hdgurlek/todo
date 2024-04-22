@@ -2,7 +2,7 @@ import { FaComment, FaTrash, FaExclamationCircle, FaSync } from "react-icons/fa"
 import { Link } from "react-router-dom";
 import { Tooltip } from 'react-tooltip';
 import useTodo from "../hooks/useTodo";
-import { updateTask, deleteTaskRequest, updateTaskRequest } from "../apis/TodoApi";
+import {deleteTaskRequest, updateTaskRequest } from "../apis/TodoApi";
 
 export default function TaskList() {
 
