@@ -17,11 +17,11 @@ To install and run the app:
 
 1. Clone the repo:
 
-   ```git clone https://github.com/your-username/todo.git```
+   ```git clone https://github.com/hdgurlek/todo-list.git```
 
 2. Go to the project directory:
    
-   ```cd todo```
+   ```cd todo-list```
 
 3. Install dependecies:
 
